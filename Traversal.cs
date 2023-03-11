@@ -8,55 +8,48 @@ namespace Delegates.TreeTraversal
 {
     public static class Traversal
     {
+        public static void ProductTree(ProductCategory root, List<Product> lt)
+        {
+            if (root.Categories.Count != 0)
+                foreach (var item in root.Categories)
+                {
+                    ProductTree(item, lt);
+                }
+            if (root.Products.Count != 0)
+                foreach (var item in root.Products)
+                {
+                    lt.Add(item);
+                }
+        }
         public static IEnumerable<Product> GetProducts(ProductCategory root)
         {
-            var right = root.Products.Select(a => a);
-            var left = root.Categories.Select(a => a).Where(b => b.Products.Count != 0);
-            var return_result = left is null;
+            List<Product> lt = new List<Product>();
+            ProductTree(root, lt);
+            return lt;
+        }
 
-            List<Product> r = new List<Product>();
-            foreach (var item in root.Categories)
-            {
-                foreach (var item1 in item.Products)
+        public static void JobTree(Job root, List<Job> lt)
+        {
+            if (root.Subjobs.Count == 0)                     
+                lt.Add(root);
+            if (root.Subjobs.Count != 0)
+                foreach (var item in root.Subjobs)
                 {
-                        r.Add(item1);
+                    JobTree(item, lt);
                 }
-            }
-            foreach (var item in root.Products)
-            {
-                r.Add(item);
-            }
-            return r;
-            //            return GetProducts(root).Select(a => Selector<Product>(a));
         }
 
         public static IEnumerable<Job> GetEndJobs(Job root)
         {
-            var right = root.Subjobs.Select(a => a).Where(b => b.Subjobs.Count == 0);
-            var left = root.Subjobs.Select(a => a).Where(b => b.Subjobs.Count > 0);
-            var return_result = left is null;
 
-            List<Job> r = new List<Job>();
-            foreach (var item in root.Subjobs)
-            {
-                if (item.Subjobs.Count == 0)
-                    r.Add(item);
-                else
-                {
-                    foreach (var item1 in item.Subjobs)
-                    {
-                        if (item1.Subjobs.Count == 0)
-                            r.Add(item1);
-                    }
-                }
-            }
-            return r;
-            //            return GetEndJobs(root).Select(a => Selector<Job>(a));
+            List<Job> lt = new List<Job>();
+            JobTree(root, lt);
+            return lt;
         }
 
         public static void TraversalTree<T>(BinaryTree<T> root, List<T> lt)
         {
-            if ((root.Left is null) & (root.Right is null))                     //(!Equals(Value, default(T)))
+            if ((root.Left is null) & (root.Right is null))                     
                 lt.Add(root.Value);
             if (root.Left != null)
                 TraversalTree(root.Left, lt);

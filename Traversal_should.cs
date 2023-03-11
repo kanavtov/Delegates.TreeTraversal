@@ -80,7 +80,7 @@ namespace Delegates.TreeTraversal
                       }
                   }
             };
-//            Test(Traversal.GetEndJobs(data), z => z.Name, "1", "2", "3");
+            Test(Traversal.GetEndJobs(data), z => z.Name, "1", "2", "3");
 
         }
 
@@ -125,7 +125,7 @@ namespace Delegates.TreeTraversal
                   }
             };
 
-//            Test(Traversal.GetProducts(data), z => z.Name, "X", "Y", "1", "A");
+            Test(Traversal.GetProducts(data), z => z.Name, "X", "Y", "1", "A");
         }
     }
 }
