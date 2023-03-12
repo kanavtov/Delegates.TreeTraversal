@@ -24,26 +24,6 @@ namespace Delegates.TreeTraversal
         public BinaryTree<T> Left;
         public BinaryTree<T> Right;
         public T Value;
-
-        //public T Print(string padding)
-        //{
-        //    if ((Left is null) & (Right is null))                     //(!Equals(Value, default(T)))
-        //        return Value;
-        //    if (Left != null)
-        //        Left.Print(padding);
-        //    if (Right != null)
-        //        Right.Print(padding);
-        //    return default(T);
-        //}
-
-        //public IEnumerable<T> Print(BinaryTree<T> root)
-        //{
-        //    if (!Equals(root.Value, default(T)))
-        //        yield return Value;
-        //    if (root.Left != null)
-        //        Print(root.Left);
-        //    if (root.Right != null)
-        //        Print(root.Right);
     }
 }
 
