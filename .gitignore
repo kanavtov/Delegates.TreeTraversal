@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Traversal _yield.cs
+/Traversal — копия (2).cs
+/Traversal — копия.cs
+/Traversal2.cs.txt
